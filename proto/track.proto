@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package track;
+
+option go_package = "trackpb";
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 4;
+}
+
+message Activity {
+    string id = 1;
+    string type = 2;
+    int64 duration = 3;
+    string label = 4;
+}
+
+message CreateUserReq {
+    User user = 1; // User id blank
+}
+
+message CreateUserRes {
+    User user = 1; // User id filled in
+}
+
+message ReadUserReq {
+    string id = 1;
+}
+
+message ReadUserRes {
+    User user = 1;
+}
+
+message ListUsersReq {}
+
+message ListUsersRes {
+    User user = 1;
+}
+
+message CreateActivityReq {
+    Activity activity = 1; // Activity id blank
+}
+
+message CreateActivityRes {
+    Activity activity = 1; // Activity id filled in
+}
+
+message IsBoolReq {
+    string id = 1;
+}
+
+message IsBoolRes {
+    bool result = 1;
+}
+
+message IsValidReq {
+    string id = 1;
+}
+
+message IsValidRes {
+    bool valid = 1;
+}
+
+message UpdateActivityReq {
+    Activity activity = 1;
+}
+
+message UpdateActivityRes {
+    Activity activity = 1;
+}
+
+message ListActivitysReq {}
+
+message ListActivitysRes {
+    Activity activity = 1;
+}
+
+service TrackService {
+    rpc CreateUser (CreateUserReq) returns (CreateUserRes);
+    rpc ReadUser (ReadUserReq) returns (ReadUserRes);
+    rpc ListUsers (ListUsersReq) returns (stream ListUsersRes);
+    rpc CreateActivity(CreateActivityReq) returns (CreateActivityRes);
+    rpc UpdateActivity(UpdateActivityReq) returns (UpdateActivityRes);
+    rpc ListActivitys(ListActivitysReq) returns (stream ListActivitysRes);
+    rpc IsBool (IsBoolReq) returns (IsBoolRes);
+    rpc IsValid (IsValidReq) returns (IsValidRes);
+}
