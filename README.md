@@ -10,3 +10,5 @@ Service Available are:-
 6. ListActivitys - To List all the activitys
 7. IsBool - To check whether an activity is completed or not.
 8. IsValid - To check whether an activity is valid or not.
+
+Note :- These services are built on MongoDB. To make things,easy run a mongodb container at port 27017
